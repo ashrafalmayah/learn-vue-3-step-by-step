@@ -5,24 +5,51 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vue</title>
         <script src="https:/unpkg.com/vue@3"></script>
+        <style>
+            html,
+            body {
+                min-height: 100vh;
+            }
+
+            body {
+                display: grid;
+                place-items: center;
+            }
+
+            button {
+                background: white;
+                font-size: 4rem;
+                padding: 1em 2em;
+                cursor: pointer;
+            }
+
+            .text-red {
+                color: red;
+            }
+
+            .text-green {
+                color: green;
+            }
+        </style>
     </head>
     <body>
         <div id="app">
-            <input type="text" v-model="greeting">
-            <p>{{ greeting }} ({{ greeting.length }})</p>
+            <button :class="active ? 'text-green' : 'text-red'" @click="toggle">
+                Click Me
+            </button>
         </div>
 
         <script>
             Vue.createApp({
                 data() {
                     return {
-                        greeting: "Hello World",
+                        active: false,
                     };
                 },
-                mounted() {
-                    setTimeout(() => {
-                        this.greeting = "changed";
-                    }, 3000);
+                methods: {
+                    toggle() {
+                        this.active = !this.active;
+                    },
                 },
             }).mount("#app");
         </script>
