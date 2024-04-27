@@ -9,76 +9,36 @@
     </head>
     <body class="min-h-screen grid place-items-center">
         <div id="app">
-            <section v-show="inProgressAssignments.length">
-                <h2 class="font-bold text-xl mb-2">In Progress</h2>
-                <ul>
-                    <li
-                        v-for="assignment in inProgressAssignments"
-                        :key="assignment.id"
-                    >
-                        <label>
-                            {{ assignment.name }}
-
-                            <input
-                                type="checkbox"
-                                v-model="assignment.completed"
-                            />
-                        </label>
-                    </li>
-                </ul>
-            </section>
-            <section v-show="completedAssignments.length" class="mt-8">
-                <h2 class="font-bold text-xl mb-2">Completed</h2>
-                <ul>
-                    <li
-                        v-for="assignment in completedAssignments"
-                        :key="assignment.id"
-                    >
-                        <label>
-                            {{ assignment.name }}
-
-                            <input
-                                type="checkbox"
-                                v-model="assignment.completed"
-                            />
-                        </label>
-                    </li>
-                </ul>
-            </section>
+            <app-button>Submit</app-button>
         </div>
 
         <script>
-            Vue.createApp({
-                data() {
-                    return {
-                        assignments: [
-                            {
-                                name: "Read chapter 4",
-                                completed: false,
-                                id: 1,
+            let app = {
+                components: {
+                    "app-button": {
+                        template: `
+                            <button class="bg-gray-600 hover:bg-gray-800 rounded disabled:cursor-not-allowed text-white px-6 py-2" :disabled="processing" @click="buttonClick">
+                                <slot />
+                            </button>
+                        `,
+                        data() {
+                            return {
+                                processing: false,
+                            };
+                        },
+                        methods: {
+                            buttonClick() {
+                                this.processing = true;
+                                setTimeout(() => {
+                                    this.processing = false;
+                                }, 3000);
                             },
-                            {
-                                name: "Turn in homework",
-                                completed: false,
-                                id: 2,
-                            },
-                            {
-                                name: "Finish project",
-                                completed: false,
-                                id: 3,
-                            },
-                        ],
-                    };
-                },
-                computed: {
-                    inProgressAssignments() {
-                        return this.assignments.filter((a) => !a.completed);
-                    },
-                    completedAssignments() {
-                        return this.assignments.filter((a) => a.completed);
+                        },
                     },
                 },
-            }).mount("#app");
+            };
+
+            Vue.createApp(app).mount("#app");
         </script>
     </body>
 </html>
