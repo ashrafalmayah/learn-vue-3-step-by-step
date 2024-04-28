@@ -6,30 +6,9 @@
         <title>Vue</title>
         <script src="https:/unpkg.com/vue@3"></script>
         <script src="https://cdn.tailwindcss.com"></script>
-        <style>
-            .loader {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                translate: -50% -50%;
-                width: 30%;
-                aspect-ratio: 1;
-                border-radius: 50%;
-                border: 5px solid lightblue;
-                border-right-color: #ffffff;
-                animation: l2 1s infinite linear;
-            }
-            @keyframes l2 {
-                to {
-                    transform: rotate(1turn);
-                }
-            }
-        </style>
     </head>
     <body class="min-h-screen grid place-items-center">
-        <div id="app">
-            <app-button>Submit</app-button>
-        </div>
+        <div id="app"></div>
 
         <script type="module">
             import App from "./js/components/App.js";
