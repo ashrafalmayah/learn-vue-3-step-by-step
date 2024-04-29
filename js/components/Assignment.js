@@ -9,9 +9,7 @@ export default {
 
         <input type="checkbox" v-model="assignment.completed" />
     </label>
-    <
-/li>
-    `,
+</li>`,
     props: {
         assignment: Object,
     },

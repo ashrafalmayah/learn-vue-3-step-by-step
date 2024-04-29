@@ -10,9 +10,7 @@ export default {
     <ul class="space-y-2">
         <assignment v-for="assignment in assignments" :key="assignment.id" :assignment="assignment"></assignment>
     </ul>
-    </sect
-ion>
-    `,
+</section>`,
     props: {
         assignments: Array,
         title: String,

@@ -1,21 +1,15 @@
+import AssignmentCreate from "./AssignmentCreate.js";
 import AssignmentList from "./AssignmentList.js";
 
 export default {
-    components: {
-        AssignmentList,
-    },
+    components: { AssignmentList, AssignmentCreate },
 
     template: /* html */ `
 <section class="space-y-4">
     <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
     <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
-    <form @submit.prevent="add" class="text-black bg-white rounded-lg overflow-clip divide-x-4 divide-gray-800">
-        <input v-model="newAssignment" class="p-2" placeholder="New assignment..." type="text"></input>
-        <button class="p-2">Add</button>
-    </form>
-    </sect
-ion>
-    `,
+    <assignment-create @add="add"></assignment-create>
+</section>`,
 
     data() {
         return {
@@ -36,7 +30,7 @@ ion>
                     id: 3,
                 },
             ],
-            newAssignment: '',
+            newAssignment: "",
         };
     },
     computed: {
@@ -48,17 +42,15 @@ ion>
         },
     },
     methods: {
-        add() {
+        add(name) {
             this.assignments.push({
-                name: this.newAssignment,
+                name: name,
                 completed: false,
                 id: this.assignments.reduce(
                     (a, b) => Math.max(a, b.id) + 1,
                     -Infinity
                 ),
             });
-
-            this.newAssignment = "";
         },
     },
 };
