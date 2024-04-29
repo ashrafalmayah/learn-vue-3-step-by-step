@@ -4,17 +4,14 @@ export default {
     components: {
         Assignment,
     },
-    template: `
-        <section v-show="assignments.length">
-            <h2 class="font-bold text-xl mb-2">{{ title }}</h2>
-            <ul>
-                <assignment 
-                    v-for="assignment in assignments"
-                    :key="assignment.id"
-                    :assignment="assignment"
-                ></assignment>
-            </ul>
-        </section>
+    template: /* html */ `
+<section v-show="assignments.length">
+    <h2 class="font-bold text-xl mb-2">{{ title }}</h2>
+    <ul class="space-y-2">
+        <assignment v-for="assignment in assignments" :key="assignment.id" :assignment="assignment"></assignment>
+    </ul>
+    </sect
+ion>
     `,
     props: {
         assignments: Array,
