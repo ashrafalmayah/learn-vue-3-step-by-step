@@ -13,40 +13,16 @@ export default {
 
     data() {
         return {
-            assignments: [
-                {
-                    name: "Read chapter 4",
-                    completed: false,
-                    id: 1,
-                    tag: "math",
-                },
-                {
-                    name: "Turn in homework",
-                    completed: false,
-                    id: 2,
-                    tag: "math",
-                },
-                {
-                    name: "Finish project",
-                    completed: false,
-                    id: 3,
-                    tag: "science",
-                },
-                {
-                    name: "Fix the query",
-                    completed: false,
-                    id: 4,
-                    tag: "programming",
-                },
-                {
-                    name: "Memorize the laws",
-                    completed: false,
-                    id: 5,
-                    tag: "physics",
-                },
-            ],
+            assignments: [],
             newAssignment: "",
         };
+    },
+    created() {
+        fetch("http://localhost:3001/assignments")
+            .then((response) => response.json())
+            .then((assignments) => {
+                this.assignments = assignments;
+            });
     },
     computed: {
         filters() {
