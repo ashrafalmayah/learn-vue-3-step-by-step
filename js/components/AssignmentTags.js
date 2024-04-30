@@ -3,7 +3,7 @@ export default {
     <div class="space-x-2 max-w-72 flex overflow-x-auto pb-1">
         <button 
             v-for="tag in tags" 
-            @click="$emit('change', tag)"
+            @click="$emit('update:currentTag', tag)"
             class="bg-gray-900 rounded-lg px-2 py-1" 
             :class="{'!bg-blue-500' : currentTag === tag}"
         >{{ tag }}</button>
