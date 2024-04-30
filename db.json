@@ -29,6 +29,12 @@
             "completed": false,
             "id": 5,
             "tag": "physics"
+        },
+        {
+            "name": "Finish the course",
+            "completed": true,
+            "id": 6,
+            "tag": "programming"
         }
     ]
 }
